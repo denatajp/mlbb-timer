@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+@theme {
+  /* Menambahkan variabel warna kustom agar bisa dipakai via utility class */
+  --color-dark: #0f1724;
+  --color-card: #111827;
+  --color-accent: #10b981;
+  
+  /* Menambahkan animasi halus untuk cooldown */
+  --animate-pulse-slow: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@layer base {
+  body {
+    @apply bg-dark text-slate-100 min-h-screen;
+    /* Gradient yang kamu minta */
+    background: linear-gradient(180deg, #071029 0%, #071a2b 100%);
+    background-attachment: fixed;
+    font-family: 'Inter', sans-serif;
+  }
+}
+
+@layer components {
+  /* Custom utility untuk glassmorphism effect pada card hero */
+  .glass-card {
+    @apply bg-card/80 backdrop-blur-md border border-white/5 shadow-xl;
+  }
+  
+  .input-field {
+    @apply bg-slate-900/50 border border-slate-700 rounded-lg p-2 text-sm 
+           focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent transition-all;
+  }
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 10px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #10b981;
+}
+
+@layer base {
+  html {
+    /* Mencegah delay klik 300ms di beberapa browser mobile */
+    touch-action: manipulation;
+    /* Mencegah seleksi teks saat klik icon berulang kali */
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  body {
+    @apply antialiased overflow-x-hidden;
+    /* Agar scroll terasa smooth di iOS */
+    -webkit-overflow-scrolling: touch;
+  }
+}
